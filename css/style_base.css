@@ -1,0 +1,33 @@
+
+
+
+
+.box{
+    height:1200px;
+    background: none repeat scroll left top #ffffff;    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header{
+    height:120px;
+    background-color:rgb(16, 117, 21);    
+}
+.main-body{
+    display:flex;
+    height:800px;
+    background-color:rgb(109, 236, 122);  
+}
+
+
+.sidebar{
+    flex:1;
+    height:800px;
+    background-color:rgb(121, 121, 121);    
+}
+
+.mid-game{ 
+    flex: 4;
+    height:800px;
+    background-color:rgb(87, 221, 91);    
+}
+
