@@ -1,6 +1,10 @@
 
 
-
+.game-screen{
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
 
 .game-page{
     height:1200px;
@@ -9,25 +13,37 @@
 }
 
 .header{
+    padding-top:20px;
+    color:white;
     height:120px;
     background-color:rgb(16, 117, 21);    
 }
 .main-body{
-    display:flex;
+    display:flex;   
     height:800px;
     background-color:rgb(109, 236, 122);  
+    justify-content: center;
+    align-items: center;
 }
 
-
 .sidebar{
+    color:white;
+    
+    padding-top: 50px;
+    text-align: center;
+    display:flex;
+    flex-direction: column;
     flex:1;
-    height:800px;
+    height:750px;
     background-color:rgb(121, 121, 121);    
 }
 
 .mid-game{ 
     flex: 4;
     height:800px;
-    background-color:rgb(87, 221, 91);    
+    background-color:rgb(96, 201, 99);    
+    justify-content: center;
+    align-items: center;
+   
 }
 

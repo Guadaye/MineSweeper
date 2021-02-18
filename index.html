@@ -5,56 +5,63 @@
         <title>Minesweeper</title>
             <link rel="stylesheet" type="text/css" href="css/style.css">
             <link rel="stylesheet" type="text/css" href="css/style_base.css">
-
             <!--Scripts here are external libs-->
+            <script src ="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script type = "text/javascript" src="scripts/libs/buzz.min.js"> </script>
             <script></script>
     </head>
 
     <body>
-
-        <section id="app-wrapper">                  
-            
-            <section id="rewards-screen"><!--Reward screen and splash screen are not designed yet-->
-            </section>
-    
-            <section id="splash-screen">    
-                <div id="main-splash-image"></div>       
-                <div id ="play-now-btn"></div>
-            </section>
+        <section id="app-wrapper">                    
+            <div class="splash-screen">
+                <div class="main-splash-image">
+                    <img src="./image/splashscreen.png" alt="splash-screen-img">
+                </div>
+                <div class ="play-now-btn">PLAY</div>
+            </div>
 
         <div class ="game-page">
-                                                                            <!--Main Game Page-->
+                                                                                   <!--Main Game Page-->
                     <div class ="header">                                    <!--This is the footer-->
                         <center><h1>Minesweeper</h1></center>
                     </div>
 
                     <div class ="main-body">                    <!--This is the middle area beneath header-->
+                        
+                            <div  class = "sidebar">                 <!--This is the left side bar-->
+                                
+                                <div id="timer"></div>
+                            </div>
 
-                        <div class = "sidebar">                 <!--This is the left side bar-->
-                            Navigation
+                        <div id="game-screen" class = "mid-game">                <!--This is the game area-->
+                                midgame 
                         </div>
-
-                
-                        <div class = "mid-game">                <!--This is the game area-->
-                            midgame 
-                        </div>
-
 
                         <div class = "sidebar">                 <!--This is the right side bar-->
-                            sidebar                      
+                                sidebar                      
                         </div>
 
                     </div>
 
+                    <div class ="header"></div>                       <!--This is the footer-->
+                                         
+                    
+        </div>
 
-                    <div class ="header">                       <!--This is the footer-->
-                        
-                    </div>
-                </div>
 
+        <div class="game-over">
+            <div>Game Over!</div>
+            
+            <button onclick="window.location.reload();">Restart</button>
+        </div>
+
+        <div class="game-win">
+            <div>You win!</div>
+            
+            <button onclick="window.location.reload();">Restart</button>
+        </div>
+
+        <script type="module" src="scripts/index.js"></script>
     </body>
-
-
-
 
 </html>

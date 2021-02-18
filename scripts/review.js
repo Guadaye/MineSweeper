@@ -37,3 +37,28 @@ while(!done){
 do{
 
 }while (!done);
+
+
+element.addEventListener(‘<>’.event =>{
+
+})
+
+
+左键：click
+右键：contextmenu
+Jquery : hide
+
+FAT ARROW function
+Before:
+hello = function(){
+Return “Hellow world”;  }
+
+With arrow:
+Hello = () =>”Hello World”;
+
+let screenElement= document.querySelector(“#game-screen”);
+screenElement.innerHTML = “<div> 要替代的东西 </div>”
+
+
+
+object 的 prototype 是 object的functions
