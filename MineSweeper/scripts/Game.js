@@ -53,6 +53,8 @@ export default class Game{
           this.clickSound.play();
         }) 
 
+
+
         $(".square").on('contextmenu', event=>{
             
             event.preventDefault();
@@ -66,20 +68,21 @@ export default class Game{
 
             const id = `square-${row}-${col}`;
             const $innerDiv = $(`#${id}`);
+            
             if (selectedSquare.isFlagged ==false&& gameOver==false)
             {
                 this.rightClickSound.play();
                 $innerDiv.removeClass(`show-indicator`);
                 $innerDiv.addClass(`flag`);
-        //    $innerDiv.prepend('<img id="flag" src="/image/flag.png" />')
-            selectedSquare.isFlagged = true;
+                $innerDiv.prepend('<img id="flag" src="./image/flag.png" />')
+                selectedSquare.isFlagged = true;
             }
             
             else
             {   
             $innerDiv.removeClass(`show-indicator`);       
             $innerDiv.removeClass(`flag`);
-          //  $innerDiv.remove();​         
+           // $("img:flag.png").remove() ;       
             $innerDiv.addClass(`square`);
             selectedSquare.isFlagged = false;           
             }
@@ -154,8 +157,6 @@ checkIfWin(){
         }
     }
 }
-
-
     stopWatch(){
         seconds++;
         if(seconds/60 ===1){
@@ -193,7 +194,7 @@ checkIfWin(){
                     if (this.minefield.squareAt(i,j).hasMine)
                     {
                         $innerDiv.addClass(`bomb`);
-                        $innerDiv.append('<img id="bomb" src="/image/bomb.png" />')
+                        $innerDiv.append('<img id="bomb" src="./image/bomb.png" />')
                     }
                 }
             }
@@ -313,9 +314,6 @@ checkIfWin(){
     
         document.querySelector("#game-screen").innerHTML = markup;
         $("#game-screen").css({"display": "flex"});
-        $("#game-screen").css({"justify-content": "center"});
-        
-        
-       
+        $("#game-screen").css({"justify-content": "center"}); 
     }
 }

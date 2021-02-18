@@ -1,6 +1,8 @@
 'use strict';
 
 import Square from "./Square.js";
+import Flag from"./Flag.js";
+
 
 export default class Minefield{
 
@@ -28,6 +30,7 @@ export default class Minefield{
         }
         }
     }
+ 
 
     squareAt(row, col){
         //go find the square at row col and return it
