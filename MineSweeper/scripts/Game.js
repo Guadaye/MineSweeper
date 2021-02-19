@@ -52,8 +52,7 @@ export default class Game{
         $(".square").on('contextmenu', event=>{
             
             event.preventDefault();
-  
-            
+             
             const $theE2 = this.getElementFromEvent(event);
 
             const row = $theE2.data("row");     //figue out which row and col it is in
@@ -64,17 +63,14 @@ export default class Game{
             const $innerDiv = $(`#${id}`);
             this.audioManager.rightClickSound.play();
 
-            if (selectedSquare.isFlagged ==false&& gameOver==false )
-            {         
+            if (selectedSquare.isFlagged ==false&& gameOver==false ){                    
                 console.log("right click");                         
                 $innerDiv.removeClass(`show-indicator`);
                 $innerDiv.addClass(`flag`);               
                 selectedSquare.isFlagged = true;
             }
             
-            else if (selectedSquare.isFlagged == true &&gameOver == false)
-            {   
-               
+            else if (selectedSquare.isFlagged == true &&gameOver == false){                              
                 $innerDiv.removeClass(`show-indicator`);       
                 $innerDiv.removeClass(`flag`);                   
                 $innerDiv.addClass(`square`);
@@ -100,10 +96,8 @@ export default class Game{
 
                 //check if there is a mine here
                 //If mine Boom! GameOver
-                if (selectedSquare.isFlagged==false)
-                {
-                    if (selectedSquare.hasMine == true)
-                        {                          
+                if (selectedSquare.isFlagged==false){               
+                    if (selectedSquare.hasMine == true){                                                 
                             this.gameOverFunction();                            
                         }
                     else{                       
@@ -129,22 +123,21 @@ export default class Game{
     }
 
 checkIfWin(){
-    if (gameOver==false)
-    {
-    //check how many squares are cleared 
+    if (gameOver==false) {
+   
+        //check how many squares are cleared 
         for (let i = 0; i< this.board.size; i++){                  
             for (let j =0; j<this.board.size; j++){
                 //Loop through all the square , if each square is cleared, keep searching.
-                if(this.minefield.squareAt(i,j).isCleared )
-                {                       
+                if(this.minefield.squareAt(i,j).isCleared ){                                      
                 CLEARED_SQUARE++;
                 }
             }
         }
-    //if squares with no mine are all cleared, win the game.
-    console.log("CLEARD_SQUARE"+CLEARED_SQUARE);
-    if (CLEARED_SQUARE== DEFAULT_SIZE*DEFAULT_SIZE-MINE_COUNT){                                      
-            this.winGameFunction();
+        //if squares with no mine are all cleared, win the game.
+        console.log("CLEARD_SQUARE"+CLEARED_SQUARE);
+        if (CLEARED_SQUARE== DEFAULT_SIZE*DEFAULT_SIZE-MINE_COUNT){                                      
+                this.winGameFunction();
         }
     }
 }
@@ -166,12 +159,10 @@ checkIfWin(){
     }
 
     gameOverFunction(){
-        for (let i = 0; i< this.board.size; i++)
-        {      
+        for (let i = 0; i< this.board.size; i++){              
             for (let j =0; j<this.board.size; j++){
                 //Loop through all the square , if each square is cleared, keep searching.
-                if(this.minefield.squareAt(i,j).isCleared )
-                {                   
+                if(this.minefield.squareAt(i,j).isCleared ){                                  
                     continue;
                 }
                 //if it is not cleared, change the background color
@@ -182,10 +173,8 @@ checkIfWin(){
                     
                     
                 //if this square is a mine, show bomb.
-                    if (this.minefield.squareAt(i,j).hasMine)
-                    {
-                        $innerDiv.addClass(`bomb`);
-                        $innerDiv.append('<img id="bomb" src="./image/bomb.png" />')
+                    if (this.minefield.squareAt(i,j).hasMine){                   
+                        $innerDiv.addClass(`bomb`);                       
                     }
                 }
             }
@@ -194,26 +183,24 @@ checkIfWin(){
         $('.game-over').show();     
         gameOver=true; 
         this.audioManager.gameOverSound.play();
-        this.stopWatchStop(); 
+        this.stopWatchStop()
     }
 
     winGameFunction(){
         console.log("wingame");
         $('.game-win').show();
-        gameOver=true;  
-
+        gameOver=true 
     }
 
-    getElementFromEvent(event){
-   
-    const $theE1 = $(event.target); // theE1 is the thing got clicked
-    const id = $theE1.attr("id");        
-    $theE1.addClass("show-indicator")
+    getElementFromEvent(event){   
+        const $theE1 = $(event.target); // theE1 is the thing got clicked
+        const id = $theE1.attr("id");        
+        $theE1.addClass("show-indicator")
         return $theE1
     }
 
-    clear(row, col)
-    {   //clear the current square.
+    clear(row, col){ 
+      //clear the current square.
         let row_range = [row - 1, row , row + 1];
         let col_range = [col - 1, col, col + 1];
         const id = `square-${row}-${col}`;
@@ -248,14 +235,12 @@ checkIfWin(){
                               
                 
                 //if the neighbour square's neighbour square has mine, add number to the neighbour square.
-                if (neighbourSquare.hasAdjacent() == true)
-                {   
-                    if (neighbourSquare.isFlagged==false)
-                    {
-                    const count = neighbourSquare.adjacentMines;
-                    const $innerDiv = $(`<div>${count}</div>`);     //add a new div inside with number in it
-                    $innerDiv.addClass(`color-${count}`);
-                    $temp_square_div.html($innerDiv);
+                if (neighbourSquare.hasAdjacent() == true){                  
+                    if (neighbourSquare.isFlagged==false){                   
+                        const count = neighbourSquare.adjacentMines;
+                        const $innerDiv = $(`<div>${count}</div>`);     //add a new div inside with number in it
+                        $innerDiv.addClass(`color-${count}`);
+                        $temp_square_div.html($innerDiv);
                     }
                     else
                     {
@@ -278,16 +263,7 @@ checkIfWin(){
         }               
     }
 
-    update(){
-        //get user input and updates the game simulation
-//        this.updateCellHandlers();
-        this.gameOver = true;
-    }
-    render(){
-        //change the DOM and the screen to show the player what is going on
-        //generate the playfield
-       // this.generateBoard();
-    }
+
 
     generateBoard(){
         let markup ="<table>";
