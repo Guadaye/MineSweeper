@@ -2,6 +2,7 @@
 
 import Minefield from"./Minefield.js"
 import AudioManager from"./AudioManager.js"
+import Square from "./Square.js";
 
 const DEFAULT_SIZE = 15;
 const MINE_COUNT =15;
@@ -23,19 +24,9 @@ export default class Game{
             size: size,
         };
         //set up the audio
-        const config1 = {
-            formats:["mp3"],
-            preload:true,
-            autoplay:false,
-            loop:false,
-        }
-        this.clickSound= new buzz.sound("./audio/click",config1);
-        this.rightClickSound= new buzz.sound("./audio/rightClick",config1);
-        this.gameOverSound = new buzz.sound("./audio/gameOver", config1);
-
-
+ 
         this.minefield = new Minefield(size, MINE_COUNT);
-        
+        this.audioManager = new AudioManager();
         
         console.log(this.minefield);
         this.gameOver=false;
@@ -54,14 +45,15 @@ export default class Game{
             console.log("CLICKED"); 
             interval = window.setInterval(this.stopWatch,1000);
             $('.splash-screen').hide();
-            this.clickSound.play();            
+            this.audioManager.clickSound.play();
+          
         }) 
 
         $(".square").on('contextmenu', event=>{
             
             event.preventDefault();
   
-            console.log("right click");
+            
             const $theE2 = this.getElementFromEvent(event);
 
             const row = $theE2.data("row");     //figue out which row and col it is in
@@ -70,18 +62,19 @@ export default class Game{
 
             const id = `square-${row}-${col}`;
             const $innerDiv = $(`#${id}`);
-            
-            if (selectedSquare.isFlagged ==false&& gameOver==false)
-            {   
-              // AudioManager.rightClickSound.play();
-                this.rightClickSound.play();
+            this.audioManager.rightClickSound.play();
+
+            if (selectedSquare.isFlagged ==false&& gameOver==false )
+            {         
+                console.log("right click");                         
                 $innerDiv.removeClass(`show-indicator`);
                 $innerDiv.addClass(`flag`);               
                 selectedSquare.isFlagged = true;
             }
             
-            else
+            else if (selectedSquare.isFlagged == true &&gameOver == false)
             {   
+               
                 $innerDiv.removeClass(`show-indicator`);       
                 $innerDiv.removeClass(`flag`);                   
                 $innerDiv.addClass(`square`);
@@ -91,8 +84,7 @@ export default class Game{
 
         $(".square").on('click', event=>{  
             if (gameOver==false){
-
-                this.clickSound.play();
+                this.audioManager.clickSound.play();
                 CLEARED_SQUARE= 0;
                 //handle the user clicking one of the game map squares
                 
@@ -201,7 +193,7 @@ checkIfWin(){
         //pop out game over window.
         $('.game-over').show();     
         gameOver=true; 
-        this.gameOverSound.play();
+        this.audioManager.gameOverSound.play();
         this.stopWatchStop(); 
     }
 

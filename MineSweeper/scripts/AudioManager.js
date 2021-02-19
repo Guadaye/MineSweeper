@@ -9,7 +9,7 @@ constructor(){
         loop:false,
     }
 
-    this.clickSound= new buzz.sound("../audio/click",config1);
+    this.clickSound= new buzz.sound("./audio/click",config1);
     this.rightClickSound= new buzz.sound("./audio/rightClick",config1);
     this.gameOverSound = new buzz.sound("./audio/gameOver", config1);
 
