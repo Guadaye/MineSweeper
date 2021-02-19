@@ -22,9 +22,21 @@ export default class Game{
         this.board={
             size: size,
         };
+        //set up the audio
+        const config1 = {
+            formats:["mp3"],
+            preload:true,
+            autoplay:false,
+            loop:false,
+        }
+        this.clickSound= new buzz.sound("./audio/click",config1);
+        this.rightClickSound= new buzz.sound("./audio/rightClick",config1);
+        this.gameOverSound = new buzz.sound("./audio/gameOver", config1);
 
 
         this.minefield = new Minefield(size, MINE_COUNT);
+        
+        
         console.log(this.minefield);
         this.gameOver=false;
 
@@ -42,10 +54,8 @@ export default class Game{
             console.log("CLICKED"); 
             interval = window.setInterval(this.stopWatch,1000);
             $('.splash-screen').hide();
-          AudioManager.clickSound.play();
+            this.clickSound.play();            
         }) 
-
-
 
         $(".square").on('contextmenu', event=>{
             
@@ -62,28 +72,25 @@ export default class Game{
             const $innerDiv = $(`#${id}`);
             
             if (selectedSquare.isFlagged ==false&& gameOver==false)
-            {
-                AudioManager.rightClickSound.play();
+            {   
+              // AudioManager.rightClickSound.play();
+                this.rightClickSound.play();
                 $innerDiv.removeClass(`show-indicator`);
-                $innerDiv.addClass(`flag`);
-                $innerDiv.prepend('<img id="flag" src="./image/flag.png" />')
+                $innerDiv.addClass(`flag`);               
                 selectedSquare.isFlagged = true;
             }
             
             else
             {   
-            $innerDiv.removeClass(`show-indicator`);       
-            $innerDiv.removeClass(`flag`);
-           // $("img:flag.png").remove() ;       
-            $innerDiv.addClass(`square`);
-            selectedSquare.isFlagged = false;           
+                $innerDiv.removeClass(`show-indicator`);       
+                $innerDiv.removeClass(`flag`);                   
+                $innerDiv.addClass(`square`);
+                selectedSquare.isFlagged = false;           
             }
         });
 
-        $(".square").on('click', event=>{ 
-            
+        $(".square").on('click', event=>{  
             if (gameOver==false){
-
 
                 this.clickSound.play();
                 CLEARED_SQUARE= 0;
@@ -194,7 +201,7 @@ checkIfWin(){
         //pop out game over window.
         $('.game-over').show();     
         gameOver=true; 
-        AudioManager.gameOverSound.play();
+        this.gameOverSound.play();
         this.stopWatchStop(); 
     }
 

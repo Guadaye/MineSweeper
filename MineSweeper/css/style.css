@@ -82,5 +82,5 @@ td{
 }
 
 .flag{
-    background:rgb(230, 212, 51);
+    background-image: url(../image/flag.png);
 }
