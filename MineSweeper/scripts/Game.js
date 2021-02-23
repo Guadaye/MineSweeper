@@ -60,8 +60,7 @@ export default class Game{
             const selectedSquare = this.minefield.squareAt(row, col);   
 
             const id = `square-${row}-${col}`;
-            const $innerDiv = $(`#${id}`);
-            this.audioManager.rightClickSound.play();
+            const $innerDiv = $(`#${id}`);              //innerDiv is the square location in html, we make it a jquery object
 
             if (selectedSquare.isFlagged ==false&& gameOver==false ){                    
                 console.log("right click");                         
@@ -109,7 +108,7 @@ export default class Game{
                         if (selectedSquare.hasAdjacent()){                 
                             const count = selectedSquare.adjacentMines;
                             const $innerDiv = $(`<div>${count}</div>`);     //add a new div inside with number in it
-                            $innerDiv.addClass(`color-${count}`);           //add a style for the adjacent mine
+                            $innerDiv.addClass(`color-${count}`);           //add a style for the adjacent mine？
                             $theE1.html($innerDiv);
                         }
                         this.clear(row, col);
@@ -193,7 +192,7 @@ checkIfWin(){
     }
 
     getElementFromEvent(event){   
-        const $theE1 = $(event.target); // theE1 is the thing got clicked
+        const $theE1 = $(event.target); 
         const id = $theE1.attr("id");        
         $theE1.addClass("show-indicator")
         return $theE1

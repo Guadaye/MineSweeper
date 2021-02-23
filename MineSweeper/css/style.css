@@ -87,3 +87,30 @@ td{
     background-image: url(../image/flag.png);
     background-size:100% 100%;
 }
+
+.color-1{
+    color:rgb(43, 75, 11);
+}
+
+.color-2{
+    color:chocolate;
+}
+
+.color-3{
+color:rgb(0, 79, 226);
+
+}
+
+.color-4{
+color:crimson
+
+}
+
+.color-5{
+    color:darkmagenta
+}
+
+.color-6{
+color:darkslateblue
+
+}

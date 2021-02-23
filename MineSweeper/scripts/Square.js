@@ -9,8 +9,9 @@ export default class Square{
     this.isFlagged = false;
  //   this.location  
     this.mine = null;  //new Mine();
-
     }
+
+    
     hasAdjacent(){
         if (this.adjacentMines){
             return true;
